@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Appellation — redirecting</title>
+<style>
+  html,body{height:100%;margin:0}
+  body{display:flex;align-items:center;justify-content:center;
+       background:#22201d;color:#e8e3da;
+       font:400 16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif}
+  a{color:#c98f4b}
+</style>
+</head>
+<body>
+<p id="m">Taking you to AVA…<br><a id="l" href="https://misteryfox.github.io/appellation-fleet-board/">Tap here if nothing happens.</a></p>
+<script>
+/* Landing pad for Supabase auth links (2026-08-12).
+   Password-reset and invite emails send people to whatever Authentication >
+   URL Configuration > Site URL says, and that value has been pointing at this
+   bare host instead of /appellation-fleet-board/. A bare github.io user host
+   with no user Pages repo returns "There isn't a GitHub Pages site here", so
+   every reset link in every inbox was dead.
+
+   This file is that missing user Pages site. 404.html is a copy, which makes
+   the same forward the fallback for ANY unclaimed path on this host -- so the
+   link works whether Site URL is the bare root, a stale path, or a typo.
+
+   The tokens ride in the URL FRAGMENT (#access_token=...&type=recovery). A
+   fragment never reaches the server, so an HTTP redirect or a <meta refresh>
+   cannot be trusted to carry it -- it has to be re-attached here in JS, which
+   is the whole reason this is a script and not a one-line meta tag. */
+(function(){
+  var APP = "https://misteryfox.github.io/appellation-fleet-board/";
+  // Guard against a loop if this ever ends up serving the app's own path.
+  if (location.pathname.indexOf("/appellation-fleet-board") === 0) return;
+  var to = APP + (location.search || "") + (location.hash || "");
+  document.getElementById("l").href = to;
+  location.replace(to);
+})();
+</script>
+</body>
+</html>
