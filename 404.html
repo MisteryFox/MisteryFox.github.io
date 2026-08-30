@@ -14,7 +14,7 @@
 </style>
 </head>
 <body>
-<p id="m">Taking you to AVA…<br><a id="l" href="https://misteryfox.github.io/appellation-fleet-board/">Tap here if nothing happens.</a></p>
+<p id="m">Taking you to AVA…<br><a id="l" href="https://appellation-hotels.github.io/appellation-fleet-board/">Tap here if nothing happens.</a></p>
 <script>
 /* Landing pad for Supabase auth links (2026-08-12).
    Password-reset and invite emails send people to whatever Authentication >
@@ -30,11 +30,22 @@
    The tokens ride in the URL FRAGMENT (#access_token=...&type=recovery). A
    fragment never reaches the server, so an HTTP redirect or a <meta refresh>
    cannot be trusted to carry it -- it has to be re-attached here in JS, which
-   is the whole reason this is a script and not a one-line meta tag. */
+   is the whole reason this is a script and not a one-line meta tag.
+
+   2026-08-29: the board moved to the org, misteryfox.github.io/appellation-
+   fleet-board/ -> appellation-hotels.github.io/appellation-fleet-board/, and
+   GitHub Pages does not redirect between them. Until this line was changed
+   the pad forwarded every dashboard invite to a 404 -- the pad itself
+   answered 200, so nothing looked broken from the outside.
+
+   The old same-host loop guard was deleted in the same edit. It returned
+   early on any /appellation-fleet-board path, which was right while the app
+   shared this host and is exactly wrong now: that path is the dead old
+   address, so it is the one visitors most need forwarding. The app now lives
+   on a different host, so this file can never be served at the target and a
+   loop is not reachable. */
 (function(){
-  var APP = "https://misteryfox.github.io/appellation-fleet-board/";
-  // Guard against a loop if this ever ends up serving the app's own path.
-  if (location.pathname.indexOf("/appellation-fleet-board") === 0) return;
+  var APP = "https://appellation-hotels.github.io/appellation-fleet-board/";
   var to = APP + (location.search || "") + (location.hash || "");
   document.getElementById("l").href = to;
   location.replace(to);
