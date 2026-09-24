@@ -12,7 +12,7 @@ const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 
-const APP = "https://appellation-hotels.github.io/appellation-fleet-board/";
+const APP = "https://ava-app.pages.dev/";
 const html = fs.readFileSync(path.join(__dirname, "index.html"), "utf8");
 const script = html.match(/<script>([\s\S]*?)<\/script>/)[1];
 
