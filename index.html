@@ -14,7 +14,7 @@
 </style>
 </head>
 <body>
-<p id="m">Taking you to AVA…<br><a id="l" href="https://appellation-hotels.github.io/appellation-fleet-board/">Tap here if nothing happens.</a></p>
+<p id="m">Taking you to SHIFT…<br><a id="l" href="https://shift.appellation.th1.ai/">Tap here if nothing happens.</a></p>
 <script>
 /* Landing pad for Supabase auth links (2026-08-12).
    Password-reset and invite emails send people to whatever Authentication >
@@ -43,9 +43,12 @@
    shared this host and is exactly wrong now: that path is the dead old
    address, so it is the one visitors most need forwarding. The app now lives
    on a different host, so this file can never be served at the target and a
-   loop is not reachable. */
+   loop is not reachable.
+
+   2026-11-13: AVA is being retired (its screens moved to SHIFT), so the pad
+   now forwards to SHIFT, which handles #type=recovery / magiclink itself. */
 (function(){
-  var APP = "https://ava-app.pages.dev/";
+  var APP = "https://shift.appellation.th1.ai/";
   var to = APP + (location.search || "") + (location.hash || "");
   document.getElementById("l").href = to;
   location.replace(to);
