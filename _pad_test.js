@@ -12,8 +12,13 @@ const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 
-const APP = "https://ava-app.pages.dev/";
+const APP = "https://shift.appellation.th1.ai/";
 const html = fs.readFileSync(path.join(__dirname, "index.html"), "utf8");
+// 404.html is the fallback for every unclaimed path, so it must be the same page.
+if (fs.readFileSync(path.join(__dirname, "404.html"), "utf8") !== html) {
+  console.log("FAIL  404.html differs from index.html");
+  process.exit(1);
+}
 const script = html.match(/<script>([\s\S]*?)<\/script>/)[1];
 
 const cases = [
